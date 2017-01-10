@@ -166,9 +166,9 @@ public class CalcActivity extends AppCompatActivity {
 
         calulcationBuilder.build();
 
-        tvZahl1.setText(calulcationBuilder.getNumber1());
-        tvZahl2.setText(calulcationBuilder.getNumber2());
-        tvOperator.setText(calulcationBuilder.getOperator());
+        tvZahl1.setText(""+calulcationBuilder.getNumber1());
+        tvZahl2.setText(""+calulcationBuilder.getNumber2());
+        tvOperator.setText(""+calulcationBuilder.getOperator());
         etResultat.requestFocus();
         total++;
         updateStats();

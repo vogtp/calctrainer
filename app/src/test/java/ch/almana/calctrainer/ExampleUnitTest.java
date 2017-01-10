@@ -19,7 +19,7 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         int min = 3;
         int max = 50;
-        ICalulcationBuilder calculationBuilder = new PlusCalculationBuilder(min,max);
+        ICalulcationBuilder calculationBuilder = new PlusCalculationBuilder();
         for (int i = 0; i < max; i++){
             checkBounds("plus ",calculationBuilder,min,max);
         }
@@ -29,7 +29,7 @@ public class ExampleUnitTest {
     public void subtraction_isCorrect() throws Exception {
         int min = 3;
         int max = 50;
-        ICalulcationBuilder calculationBuilder = new MinusCalculationBuilder(min,max);
+        ICalulcationBuilder calculationBuilder = new MinusCalculationBuilder();
         for (int i = 0; i < max; i++){
             checkBounds("minus ",calculationBuilder,min,max);
         }
@@ -37,11 +37,11 @@ public class ExampleUnitTest {
 
     private void checkBounds(String msg, ICalulcationBuilder calculationBuilder, int min, int max) {
         calculationBuilder.build();
-        assertTrue(calculationBuilder.toString(),Integer.parseInt(String.valueOf(calculationBuilder.getNumber1())) >= min);
-        assertTrue(calculationBuilder.toString(),Integer.parseInt(String.valueOf(calculationBuilder.getNumber1())) <= max);
-        assertTrue(calculationBuilder.toString(),Integer.parseInt(String.valueOf(calculationBuilder.getNumber2())) >= min);
-        assertTrue(calculationBuilder.toString(),Integer.parseInt(String.valueOf(calculationBuilder.getNumber2())) <= max);
-        assertTrue(calculationBuilder.toString(),Integer.parseInt(String.valueOf(calculationBuilder.getResult())) >= min);
-        assertTrue(calculationBuilder.toString(),Integer.parseInt(String.valueOf(calculationBuilder.getResult())) <= max);
+        assertTrue(calculationBuilder.toString(),calculationBuilder.getNumber1() >= min);
+        assertTrue(calculationBuilder.toString(),calculationBuilder.getNumber1() <= max);
+        assertTrue(calculationBuilder.toString(),calculationBuilder.getNumber2() >= min);
+        assertTrue(calculationBuilder.toString(),calculationBuilder.getNumber2() <= max);
+        assertTrue(calculationBuilder.toString(),calculationBuilder.getResult() >= min);
+        assertTrue(calculationBuilder.toString(),calculationBuilder.getResult() <= max);
     }
 }

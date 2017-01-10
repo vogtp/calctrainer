@@ -12,7 +12,6 @@ import java.util.Random;
 public class PlusCalculationBuilder extends BaseCalculationBuilder implements ICalulcationBuilder {
     private static final String TAG = "CalcTrainer.Plus";
 
-    private Random rand = new Random();
 
     private int number1;
     private int number2;
@@ -28,7 +27,7 @@ public class PlusCalculationBuilder extends BaseCalculationBuilder implements IC
 
 
     @Override
-    public void build() {
+    public void internal_build() {
         int min = getMin();
         int max = getMax();
 //        Log.i(TAG, "Generating plus calculation between " + min + " and " + max);
@@ -44,18 +43,18 @@ public class PlusCalculationBuilder extends BaseCalculationBuilder implements IC
     }
 
     @Override
-    public CharSequence getNumber1() {
-        return Integer.toString(number1);
+    public int getNumber1() {
+        return number1;
     }
 
     @Override
-    public CharSequence getNumber2() {
-        return Integer.toString(number2);
+    public int getNumber2() {
+        return number2;
     }
 
     @Override
-    public CharSequence getResult() {
-        return Integer.toString(number1 + number2);
+    public int getResult() {
+        return number1 + number2;
     }
     @Override
     public CharSequence getOperator() {

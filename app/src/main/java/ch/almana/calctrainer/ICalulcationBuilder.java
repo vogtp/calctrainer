@@ -14,11 +14,11 @@ public interface ICalulcationBuilder {
 
     int getMax();
 
-    CharSequence getResult();
+    int getResult();
 
-    CharSequence getNumber1();
+    int getNumber1();
 
-    CharSequence getNumber2();
+    int getNumber2();
 
     CharSequence getOperator();
 
