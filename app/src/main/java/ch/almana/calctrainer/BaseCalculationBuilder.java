@@ -13,6 +13,7 @@ public abstract  class BaseCalculationBuilder implements ICalulcationBuilder {
 
     private static final String PREF_KEY_MIN = "_Min";
     private static final String PREF_KEY_MAX = "_Max";
+    public static final int PROBABILITY_FOR_ZERO = 10;
 
     protected Random rand = new Random();
     private final SharedPreferences preferences;
@@ -61,7 +62,7 @@ public abstract  class BaseCalculationBuilder implements ICalulcationBuilder {
     @Override
     public void build() {
         internal_build();
-        while ((getResult() == 0 || getNumber1() == 0 || getNumber2() == 0) && rand.nextInt(10) > 1) {
+        while ((getResult() == 0 || getNumber1() == 0 || getNumber2() == 0) && rand.nextInt(100) > PROBABILITY_FOR_ZERO) {
             Log.v(TAG, "Building new calculation since: "+toString());
             internal_build();
         }
