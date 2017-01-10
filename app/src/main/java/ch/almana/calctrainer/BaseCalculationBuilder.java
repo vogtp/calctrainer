@@ -66,12 +66,15 @@ public abstract  class BaseCalculationBuilder implements ICalulcationBuilder {
     @Override
     public void build() {
         internal_build();
-        while ((getResult() == 0 || getNumber1() == 0 || getNumber2() == 0) && rand.nextInt(100) > PROBABILITY_FOR_ZERO) {
+        int irrelevant = getIrelevantNumber();
+        while ((getResult() == irrelevant || getNumber1() == irrelevant || getNumber2() == irrelevant) && rand.nextInt(100) > PROBABILITY_FOR_ZERO) {
             Log.v(TAG, "Building new calculation since: "+toString());
             internal_build();
         }
         Log.i(TAG,"Using calculation "+toString());
     }
+
+    protected abstract int getIrelevantNumber();
 
     protected abstract void internal_build();
 

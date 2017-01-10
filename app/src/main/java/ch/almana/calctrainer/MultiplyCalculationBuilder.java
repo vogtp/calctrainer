@@ -54,6 +54,11 @@ public class MultiplyCalculationBuilder extends BaseCalculationBuilder implement
     }
 
     @Override
+    protected int getIrelevantNumber() {
+        return 1;
+    }
+
+    @Override
     public boolean checkResult(String result) {
         if (TextUtils.isEmpty(result)) {
             return false;

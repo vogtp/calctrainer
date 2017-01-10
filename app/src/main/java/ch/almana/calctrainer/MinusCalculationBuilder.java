@@ -68,6 +68,11 @@ public class MinusCalculationBuilder extends BaseCalculationBuilder implements I
     }
 
     @Override
+    protected int getIrelevantNumber() {
+        return 1;
+    }
+
+    @Override
     public boolean checkResult(String result) {
         if (TextUtils.isEmpty(result)){
             return false;

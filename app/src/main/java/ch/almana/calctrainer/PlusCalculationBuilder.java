@@ -69,6 +69,11 @@ public class PlusCalculationBuilder extends BaseCalculationBuilder implements IC
     }
 
     @Override
+    protected int getIrelevantNumber() {
+        return 0;
+    }
+
+    @Override
     public boolean checkResult(String result) {
         if (TextUtils.isEmpty(result)){
             return false;
