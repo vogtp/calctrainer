@@ -1,21 +1,48 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'calctrainer'
+            keyPassword '123456'
+            storeFile file("${rootDir}/keystore.ks.jks")
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "24.0.3"
     defaultConfig {
         applicationId "ch.almana.calctrainer"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2017011002
+        versionName "0.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
+            applicationVariants.all { variant ->
+                appendVersionNameVersionCode(variant, defaultConfig.versionName)
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+}
+
+def appendVersionNameVersionCode(variant, versionName) {
+    variant.outputs.each { output ->
+        def apkVersion = "-" + versionName + ".apk"
+        if (output.zipAlign) {
+            def file = output.outputFile
+            def fileName = file.name.replace(".apk", apkVersion)
+            output.outputFile = new File(file.parent, fileName)
+        }
+
+        def file = output.packageApplication.outputFile
+        def fileName = file.name.replace(".apk", "-" + apkVersion)
+        output.packageApplication.outputFile = new File(file.parent, fileName)
     }
 }
 
