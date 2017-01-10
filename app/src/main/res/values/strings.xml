@@ -7,4 +7,6 @@
     <string name="label_max">Max</string>
     <string name="label_correct">Right:</string>
     <string name="label_wrong">Wrong:</string>
+    <string name="title_del_counter">Delete counter?</string>
+    <string name="msg_del_counter">Delete all counters and start new?</string>
 </resources>

@@ -8,4 +8,6 @@
     <string name="label_min">Min</string>
     <string name="label_total">Total:</string>
     <string name="label_wrong">Falsch:</string>
+    <string name="msg_del_counter">Alle zähle löschen und neu beginnen?</string>
+    <string name="title_del_counter">Zähler löschen?</string>
 </resources>
