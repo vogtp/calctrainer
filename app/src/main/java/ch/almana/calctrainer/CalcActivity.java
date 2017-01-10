@@ -1,7 +1,9 @@
 package ch.almana.calctrainer;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.PersistableBundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -66,14 +68,12 @@ public class CalcActivity extends AppCompatActivity {
                     if (calulcationBuilder.checkResult(etResultat.getText().toString())){
                         tvResult.setText(R.string.right_answer);
                         tvResult.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-//                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_correct,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_correct);
                         ok = true;
                         right++;
                     }else{
                         tvResult.setText(getString(R.string.wrong_answer, etResultat.getText().toString()));
                         tvResult.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-//                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_falsch,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_falsch);
                         etResultat.setText("");
                         wrong++;
@@ -149,6 +149,26 @@ public class CalcActivity extends AppCompatActivity {
                     total--;
                 }
                 newCalculation();
+            }
+        });
+        findViewById(R.id.buClearStats).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CalcActivity.this);
+                builder.setTitle(getString(R.string.title_del_counter));
+                builder.setMessage(getString(R.string.msg_del_counter));
+                builder.setNegativeButton(android.R.string.no,null);
+                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        right=0;
+                        wrong=0;
+                        total=0;
+                        updateStats();
+                        newCalculation();
+                    }
+                });
+                builder.show();
             }
         });
     }
