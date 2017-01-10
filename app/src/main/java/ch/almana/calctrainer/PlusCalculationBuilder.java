@@ -1,5 +1,6 @@
 package ch.almana.calctrainer;
 
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -16,8 +17,13 @@ public class PlusCalculationBuilder extends BaseCalculationBuilder implements IC
     private int number1;
     private int number2;
 
-    public PlusCalculationBuilder(int min, int max) {
-        super(min,max);
+    public PlusCalculationBuilder(SharedPreferences preferences) {
+        super(preferences);
+    }
+
+    @Override
+    public String getName() {
+        return "Plus";
     }
 
 

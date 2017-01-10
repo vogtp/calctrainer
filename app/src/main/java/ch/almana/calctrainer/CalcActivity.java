@@ -4,7 +4,9 @@ import android.content.SharedPreferences;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,8 +14,6 @@ import android.widget.TextView;
 
 public class CalcActivity extends AppCompatActivity {
 
-    private static final String PREF_KEY_MIN = "min";
-    private static final String PREF_KEY_MAX = "max";
     private TextView tvZahl1;
     private TextView tvZahl2;
     private TextView tvOperator;
@@ -52,11 +52,8 @@ public class CalcActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("calctrainer", MODE_PRIVATE);
 
-        etMax.setText(""+getMax());
-        etMin.setText(""+getMin());
-
-        plusCalculator = new PlusCalculationBuilder(getMin(),getMax());
-        minusCalculator = new MinusCalculationBuilder(getMin(),getMax());
+        plusCalculator = new PlusCalculationBuilder(preferences);
+        minusCalculator = new MinusCalculationBuilder(preferences);
         calulcationBuilder = plusCalculator;
         newCalculation();
 
@@ -81,6 +78,53 @@ public class CalcActivity extends AppCompatActivity {
                     }
                 }
                 updateStats();
+            }
+        });
+
+        etMax.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                int max = calulcationBuilder.getMax();
+                try{
+                    max = Integer.parseInt(etMax.getText().toString());
+                    if (max > 0 ){
+                        calulcationBuilder.setMax(max);
+                    }else{
+                        etMax.setText(""+ calulcationBuilder.getMax());
+                    }
+                }catch (Exception e){
+                }
+            }
+        });
+
+        etMin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try{
+                    int i = Integer.parseInt(etMin.getText().toString());
+                    calulcationBuilder.setMin(i);
+                }catch (Exception e){
+                }
             }
         });
 
@@ -110,18 +154,16 @@ public class CalcActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
-        updateMinMax();
     }
 
     private void newCalculation() {
-        updateMinMax();
         ok = false;
+        etMax.setText(""+ calulcationBuilder.getMax());
+        etMin.setText(""+ calulcationBuilder.getMin());
         tvResult.setText("");
         etResultat.setText("");
         ivSmilie.setImageResource(R.mipmap.icon_wink);
 
-        calulcationBuilder.setMin(getMin());
-        calulcationBuilder.setMax(getMax());
         calulcationBuilder.build();
 
         tvZahl1.setText(calulcationBuilder.getNumber1());
@@ -132,28 +174,5 @@ public class CalcActivity extends AppCompatActivity {
         updateStats();
     }
 
-    private void updateMinMax() {
-        int max = getMax();
-        try{
-            max = Integer.parseInt(etMax.getText().toString());
-            if (max > 0 ){
-                preferences.edit().putInt(PREF_KEY_MAX,max).apply();
-            }else{
-                etMax.setText(""+getMax());
-            }
-        }catch (Exception e){
-        }
-        try{
-            int i = Integer.parseInt(etMin.getText().toString());
-            preferences.edit().putInt(PREF_KEY_MIN,i).apply();
-        }catch (Exception e){
-        }
-    }
 
-    public int getMin() {
-        return preferences.getInt(PREF_KEY_MIN, 0);
-    }
-    public int getMax() {
-        return preferences.getInt(PREF_KEY_MAX, 30);
-    }
 }

@@ -10,6 +10,10 @@ public interface ICalulcationBuilder {
 
     void build();
 
+    int getMin();
+
+    int getMax();
+
     CharSequence getResult();
 
     CharSequence getNumber1();

@@ -1,5 +1,6 @@
 package ch.almana.calctrainer;
 
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -15,8 +16,14 @@ public class MinusCalculationBuilder extends BaseCalculationBuilder implements I
     private int number1;
     private int number2;
 
-    public MinusCalculationBuilder(int min, int max) {
-        super(min,max);
+
+    public MinusCalculationBuilder(SharedPreferences preferences) {
+        super(preferences);
+    }
+
+    @Override
+    public String getName() {
+        return "Minus";
     }
 
     @Override
