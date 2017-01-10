@@ -29,13 +29,17 @@ public abstract  class BaseCalculationBuilder implements ICalulcationBuilder {
 
     @Override
     public int getMin() {
-        return preferences.getInt(getName()+PREF_KEY_MIN, 0);
+        return preferences.getInt(getName() + PREF_KEY_MIN, getDetaultMin());
     }
+
+    protected abstract int getDetaultMin();
 
     @Override
     public int getMax() {
-        return preferences.getInt(getName()+PREF_KEY_MAX, 30);
+        return preferences.getInt(getName() + PREF_KEY_MAX, getDefaultMax());
     }
+
+    protected abstract int getDefaultMax();
 
     @Override
     public void setMin(int i) {

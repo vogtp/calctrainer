@@ -2,9 +2,6 @@ package ch.almana.calctrainer;
 
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.util.Log;
-
-import java.util.Random;
 
 /**
  * Created by vogtp on 09.01.17.
@@ -23,6 +20,16 @@ public class MinusCalculationBuilder extends BaseCalculationBuilder implements I
     @Override
     public String getName() {
         return "Minus";
+    }
+
+    @Override
+    protected int getDetaultMin() {
+        return 0;
+    }
+
+    @Override
+    protected int getDefaultMax() {
+        return 15;
     }
 
     @Override
