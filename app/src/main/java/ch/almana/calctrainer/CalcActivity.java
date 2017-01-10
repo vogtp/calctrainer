@@ -27,6 +27,12 @@ public class CalcActivity extends AppCompatActivity {
     private EditText etMax;
     private EditText etMin;
     private SharedPreferences preferences;
+    private int right = 0;
+    private int wrong = 0;
+    private int total = 0;
+    private TextView tvRight;
+    private TextView tvWrong;
+    private TextView tvTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,9 @@ public class CalcActivity extends AppCompatActivity {
         tvZahl2 = (TextView)findViewById(R.id.tvZahl2);
         tvOperator = (TextView)findViewById(R.id.tvOperator);
         tvResult = (TextView)findViewById(R.id.tvResult);
+        tvRight = (TextView)findViewById(R.id.tvRight);
+        tvWrong = (TextView)findViewById(R.id.tvWrong);
+        tvTotal = (TextView)findViewById(R.id.tvTotal);
         ivSmilie = (ImageView) findViewById(R.id.ivSmilie);
         etResultat = (EditText)findViewById(R.id.etResultat);
         etMax = (EditText)findViewById(R.id.etMax);
@@ -62,12 +71,15 @@ public class CalcActivity extends AppCompatActivity {
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_correct,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_correct);
                         ok = true;
+                        right++;
                     }else{
                         tvResult.setText(etResultat.getText().toString()+"ist falsch....");
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_falsch,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_falsch);
+                        wrong++;
                     }
                 }
+                updateStats();
             }
         });
 
@@ -86,6 +98,12 @@ public class CalcActivity extends AppCompatActivity {
                 newCalculation();
             }
         });
+    }
+
+    private void updateStats() {
+        tvRight.setText(Integer.toString(right));
+        tvWrong.setText(Integer.toString(wrong));
+        tvTotal.setText(Integer.toString(total));
     }
 
     @Override
@@ -109,6 +127,8 @@ public class CalcActivity extends AppCompatActivity {
         tvZahl2.setText(calulcationBuilder.getNumber2());
         tvOperator.setText(calulcationBuilder.getOperator());
         etResultat.requestFocus();
+        total++;
+        updateStats();
     }
 
     private void updateMinMax() {
@@ -117,6 +137,8 @@ public class CalcActivity extends AppCompatActivity {
             max = Integer.parseInt(etMax.getText().toString());
             if (max > 0 ){
                 preferences.edit().putInt(PREF_KEY_MAX,max).apply();
+            }else{
+                etMax.setText(""+getMax());
             }
         }catch (Exception e){
         }
