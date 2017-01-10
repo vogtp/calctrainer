@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -222,6 +223,8 @@ public class CalcActivity extends AppCompatActivity {
         tvZahl2.setText(""+calulcationBuilder.getNumber2());
         tvOperator.setText(""+calulcationBuilder.getOperator());
         etResultat.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.showSoftInput(etResultat, InputMethodManager.SHOW_IMPLICIT);
         total++;
         updateStats();
     }
