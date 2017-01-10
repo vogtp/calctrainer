@@ -183,6 +183,13 @@
                     android:layout_height="wrap_content"
                     android:text="\u2022"
                     android:textSize="36sp" />
+
+                <Button
+                    android:id="@+id/buDivison"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:textSize="36sp" />
             </LinearLayout>
 
             <LinearLayout

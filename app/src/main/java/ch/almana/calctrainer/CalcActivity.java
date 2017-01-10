@@ -25,6 +25,7 @@ public class CalcActivity extends AppCompatActivity {
     private ICalulcationBuilder plusCalculator;
     private ICalulcationBuilder minusCalculator;
     private ICalulcationBuilder multiplyCalculationBuilder;
+    private ICalulcationBuilder divisionCalculationBuilder;
     private ImageView ivSmilie;
     private boolean ok = false;
     private EditText etMax;
@@ -58,6 +59,7 @@ public class CalcActivity extends AppCompatActivity {
         plusCalculator = new PlusCalculationBuilder(preferences);
         minusCalculator = new MinusCalculationBuilder(preferences);
         multiplyCalculationBuilder = new MultiplyCalculationBuilder(preferences);
+        divisionCalculationBuilder = new DivisionCalculationBuilder(preferences);
         calulcationBuilder = plusCalculator;
         newCalculation();
 
@@ -157,6 +159,16 @@ public class CalcActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 calulcationBuilder = multiplyCalculationBuilder;
+                if (TextUtils.isEmpty(etResultat.getText().toString())) {
+                    total--;
+                }
+                newCalculation();
+            }
+        });
+        findViewById(R.id.buDivison).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calulcationBuilder = divisionCalculationBuilder;
                 if (TextUtils.isEmpty(etResultat.getText().toString())) {
                     total--;
                 }
