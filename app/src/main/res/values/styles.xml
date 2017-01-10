@@ -11,6 +11,7 @@
     <style name="bigText">
         <item name="android:textAppearance">@android:style/TextAppearance.DeviceDefault.Large</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:padding">5dp</item>
     </style>
 
 </resources>
