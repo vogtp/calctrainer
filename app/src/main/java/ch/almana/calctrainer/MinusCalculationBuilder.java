@@ -8,42 +8,31 @@ import java.util.Random;
 /**
  * Created by vogtp on 09.01.17.
  */
-public class MinusCalculationBuilder implements ICalulcationBuilder {
+public class MinusCalculationBuilder extends BaseCalculationBuilder implements ICalulcationBuilder {
     private static final String TAG = "CalcTrainer.Minus";
     private Random rand = new Random();
 
-    private int min;
-    private int max;
     private int number1;
     private int number2;
 
     public MinusCalculationBuilder(int min, int max) {
-        this.min = min;
-        this.max = max;
-    }
-
-    @Override
-    public void setMin(int i) {
-        this.min = i;
-    }
-
-    @Override
-    public void setMax(int i) {
-        this.max = i;
+        super(min,max);
     }
 
     @Override
     public void build() {
-        Log.i(TAG, "Generating minus calculation between "+min+" and "+max);
+        int min = getMin();
+        int max = getMax();
+//        Log.i(TAG, "Generating minus calculation between "+min+" and "+max);
         number1 = rand.nextInt(max-min) + min;
-        Log.i(TAG, "Number1: "+number1);
+//        Log.i(TAG, "Number1: "+number1);
         int n = number1 - min;
         if (n <= 0){
             number2 = min;
         }else {
             number2 = rand.nextInt(n)+min;
         }
-        Log.i(TAG, "Number2: "+number2);
+//        Log.i(TAG, "Number2: "+number2);
     }
 
     @Override

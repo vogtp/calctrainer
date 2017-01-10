@@ -8,43 +8,33 @@ import java.util.Random;
 /**
  * Created by vogtp on 09.01.17.
  */
-public class PlusCalculationBuilder implements ICalulcationBuilder {
+public class PlusCalculationBuilder extends BaseCalculationBuilder implements ICalulcationBuilder {
     private static final String TAG = "CalcTrainer.Plus";
 
     private Random rand = new Random();
 
-    private int min;
-    private int max;
     private int number1;
     private int number2;
 
     public PlusCalculationBuilder(int min, int max) {
-        this.min = min;
-        this.max = max;
+        super(min,max);
     }
 
-    @Override
-    public void setMin(int i) {
-        this.min = i;
-    }
-
-    @Override
-    public void setMax(int i) {
-        this.max = i;
-    }
 
     @Override
     public void build() {
-        Log.i(TAG, "Generating plus calculation between " + min + " and " + max);
+        int min = getMin();
+        int max = getMax();
+//        Log.i(TAG, "Generating plus calculation between " + min + " and " + max);
         number1 = rand.nextInt(max - min) + min;
-        Log.i(TAG, "Number1: " + number1);
+//        Log.i(TAG, "Number1: " + number1);
         int n = max - number1;
         if (n <= 0) {
             number2 = min;
         } else {
             number2 = rand.nextInt(n)+min;
         }
-        Log.i(TAG, "Number2: " + number2);
+//        Log.i(TAG, "Number2: " + number2);
     }
 
     @Override
@@ -59,7 +49,7 @@ public class PlusCalculationBuilder implements ICalulcationBuilder {
 
     @Override
     public CharSequence getResult() {
-        return Integer.toString(number1 - number2);
+        return Integer.toString(number1 + number2);
     }
     @Override
     public CharSequence getOperator() {

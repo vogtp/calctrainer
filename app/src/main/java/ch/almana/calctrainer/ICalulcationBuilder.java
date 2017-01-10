@@ -10,6 +10,8 @@ public interface ICalulcationBuilder {
 
     void build();
 
+    CharSequence getResult();
+
     CharSequence getNumber1();
 
     CharSequence getNumber2();
@@ -18,5 +20,4 @@ public interface ICalulcationBuilder {
 
     boolean checkResult(String result);
 
-    CharSequence getResult();
 }

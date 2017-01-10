@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -55,15 +56,17 @@ public class CalcActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (ok){
                     newCalculation();
-                }else if (calulcationBuilder.checkResult(etResultat.getText().toString())){
-                    tvResult.setText("Richtig!");
+                }else if (!TextUtils.isEmpty(etResultat.getText().toString())){
+                    if (calulcationBuilder.checkResult(etResultat.getText().toString())){
+                        tvResult.setText("Richtig!");
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_correct,0,0,0);
-                    ivSmilie.setImageResource(R.mipmap.icon_correct);
-                    ok = true;
-                }else{
-                    tvResult.setText("Falsch....");
+                        ivSmilie.setImageResource(R.mipmap.icon_correct);
+                        ok = true;
+                    }else{
+                        tvResult.setText(etResultat.getText().toString()+"ist falsch....");
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_falsch,0,0,0);
-                    ivSmilie.setImageResource(R.mipmap.icon_falsch);
+                        ivSmilie.setImageResource(R.mipmap.icon_falsch);
+                    }
                 }
             }
         });
@@ -109,9 +112,12 @@ public class CalcActivity extends AppCompatActivity {
     }
 
     private void updateMinMax() {
+        int max = getMax();
         try{
-            int i = Integer.parseInt(etMax.getText().toString());
-            preferences.edit().putInt(PREF_KEY_MAX,i).apply();
+            max = Integer.parseInt(etMax.getText().toString());
+            if (max > 0 ){
+                preferences.edit().putInt(PREF_KEY_MAX,max).apply();
+            }
         }catch (Exception e){
         }
         try{
