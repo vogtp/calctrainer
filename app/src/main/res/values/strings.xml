@@ -9,4 +9,6 @@
     <string name="label_wrong">Wrong:</string>
     <string name="title_del_counter">Delete counter?</string>
     <string name="msg_del_counter">Delete all counters and start new?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>

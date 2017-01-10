@@ -200,8 +200,8 @@ public class CalcActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(CalcActivity.this);
                 builder.setTitle(getString(R.string.title_del_counter));
                 builder.setMessage(getString(R.string.msg_del_counter));
-                builder.setNegativeButton(android.R.string.no,null);
-                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.no, null);
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         right=0;
