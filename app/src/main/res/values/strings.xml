@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Calctrainer</string>
+    <string name="right_answer">Correct!</string>
+    <string name="wrong_answer">%s is wrong....</string>
+    <string name="label_total">Total:</string>
+    <string name="label_min">Min</string>
+    <string name="label_max">Max</string>
+    <string name="label_correct">Right:</string>
+    <string name="label_wrong">Wrong:</string>
 </resources>

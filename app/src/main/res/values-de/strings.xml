@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rechen Trainer</string>
+    <string name="right_answer">Richtig!</string>
+    <string name="wrong_answer">%s ist falsch....</string>
+    <string name="label_correct">Richtig:</string>
+    <string name="label_max">Max</string>
+    <string name="label_min">Min</string>
+    <string name="label_total">Total:</string>
+    <string name="label_wrong">Falsch:</string>
+</resources>

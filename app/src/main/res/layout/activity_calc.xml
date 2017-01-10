@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Richtig:"
+                    android:text="@string/label_correct"
                     android:textSize="16sp" />
                 <TextView
                     android:id="@+id/tvRight"
@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="Falsch:"
+                    android:text="@string/label_wrong"
                     android:textSize="16sp" />
                 <TextView
                     android:id="@+id/tvWrong"
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="Total:"
+                    android:text="@string/label_total"
                     android:textSize="16sp" />
                 <TextView
                     android:id="@+id/tvTotal"
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Rechne..." />
+                    android:text="..." />
             </LinearLayout>
 
             <LinearLayout
@@ -168,7 +168,7 @@
                     style="@style/bigText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Min" />
+                    android:text="@string/label_min" />
 
                 <EditText
                     android:id="@+id/etMin" android:visibility="gone"
@@ -188,7 +188,7 @@
                     style="@style/bigText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Max" />
+                    android:text="@string/label_max" />
 
                 <EditText
                     android:id="@+id/etMax"

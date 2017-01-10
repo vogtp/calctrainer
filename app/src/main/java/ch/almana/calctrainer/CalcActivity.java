@@ -67,15 +67,16 @@ public class CalcActivity extends AppCompatActivity {
                     newCalculation();
                 }else if (!TextUtils.isEmpty(etResultat.getText().toString())){
                     if (calulcationBuilder.checkResult(etResultat.getText().toString())){
-                        tvResult.setText("Richtig!");
+                        tvResult.setText(R.string.right_answer);
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_correct,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_correct);
                         ok = true;
                         right++;
                     }else{
-                        tvResult.setText(etResultat.getText().toString()+"ist falsch....");
+                        tvResult.setText(getString(R.string.wrong_answer, etResultat.getText().toString()));
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_falsch,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_falsch);
+                        etResultat.setText("");
                         wrong++;
                     }
                 }
