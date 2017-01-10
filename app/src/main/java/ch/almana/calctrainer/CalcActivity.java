@@ -101,6 +101,9 @@ public class CalcActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (calulcationBuilder == null) {
+                    return;
+                }
                 int max = calulcationBuilder.getMax();
                 try{
                     max = Integer.parseInt(etMax.getText().toString());
@@ -127,6 +130,9 @@ public class CalcActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (calulcationBuilder == null) {
+                    return;
+                }
                 try{
                     int i = Integer.parseInt(etMin.getText().toString());
                     calulcationBuilder.setMin(i);
@@ -139,6 +145,9 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.buPlus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calulcationBuilder = null;
+                etMax.setText("" + plusCalculator.getMax());
+                etMin.setText("" + plusCalculator.getMin());
                 calulcationBuilder = plusCalculator;
                 if (TextUtils.isEmpty(etResultat.getText().toString())){
                     total--;
@@ -149,6 +158,9 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.buMinux).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calulcationBuilder = null;
+                etMax.setText("" + minusCalculator.getMax());
+                etMin.setText("" + minusCalculator.getMin());
                 calulcationBuilder = minusCalculator;
                 if (TextUtils.isEmpty(etResultat.getText().toString())){
                     total--;
@@ -159,6 +171,9 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.buMultiply).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calulcationBuilder = null;
+                etMax.setText("" + multiplyCalculationBuilder.getMax());
+                etMin.setText("" + multiplyCalculationBuilder.getMin());
                 calulcationBuilder = multiplyCalculationBuilder;
                 if (TextUtils.isEmpty(etResultat.getText().toString())) {
                     total--;
@@ -169,6 +184,9 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.buDivison).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calulcationBuilder = null;
+                etMax.setText("" + divisionCalculationBuilder.getMax());
+                etMin.setText("" + divisionCalculationBuilder.getMin());
                 calulcationBuilder = divisionCalculationBuilder;
                 if (TextUtils.isEmpty(etResultat.getText().toString())) {
                     total--;
@@ -211,8 +229,6 @@ public class CalcActivity extends AppCompatActivity {
 
     private void newCalculation() {
         ok = false;
-        etMax.setText(""+ calulcationBuilder.getMax());
-        etMin.setText(""+ calulcationBuilder.getMin());
         tvResult.setText("");
         etResultat.setText("");
         ivSmilie.setImageResource(R.mipmap.icon_wink);
