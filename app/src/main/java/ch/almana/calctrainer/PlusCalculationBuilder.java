@@ -1,15 +1,15 @@
 package ch.almana.calctrainer;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.Random;
-
-import static android.R.attr.max;
 
 /**
  * Created by vogtp on 09.01.17.
  */
 public class PlusCalculationBuilder implements ICalulcationBuilder {
+    private static final String TAG = "CalcTrainer.Plus";
 
     private Random rand = new Random();
 
@@ -35,8 +35,16 @@ public class PlusCalculationBuilder implements ICalulcationBuilder {
 
     @Override
     public void build() {
-        number1 = rand.nextInt(max-min) + min;
-        number2 = rand.nextInt(max-min-number1) + min;
+        Log.i(TAG, "Generating plus calculation between " + min + " and " + max);
+        number1 = rand.nextInt(max - min) + min;
+        Log.i(TAG, "Number1: " + number1);
+        int n = max - number1;
+        if (n <= 0) {
+            number2 = min;
+        } else {
+            number2 = rand.nextInt(n)+min;
+        }
+        Log.i(TAG, "Number2: " + number2);
     }
 
     @Override
@@ -49,6 +57,10 @@ public class PlusCalculationBuilder implements ICalulcationBuilder {
         return Integer.toString(number2);
     }
 
+    @Override
+    public CharSequence getResult() {
+        return Integer.toString(number1 - number2);
+    }
     @Override
     public CharSequence getOperator() {
         return "+";

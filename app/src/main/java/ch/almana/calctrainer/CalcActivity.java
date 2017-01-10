@@ -1,5 +1,7 @@
 package ch.almana.calctrainer;
 
+import android.content.SharedPreferences;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.TextView;
 
 public class CalcActivity extends AppCompatActivity {
 
+    private static final String PREF_KEY_MIN = "min";
+    private static final String PREF_KEY_MAX = "max";
     private TextView tvZahl1;
     private TextView tvZahl2;
     private TextView tvOperator;
@@ -19,6 +23,9 @@ public class CalcActivity extends AppCompatActivity {
     private ICalulcationBuilder minusCalculator;
     private ImageView ivSmilie;
     private boolean ok = false;
+    private EditText etMax;
+    private EditText etMin;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +35,18 @@ public class CalcActivity extends AppCompatActivity {
         tvZahl2 = (TextView)findViewById(R.id.tvZahl2);
         tvOperator = (TextView)findViewById(R.id.tvOperator);
         tvResult = (TextView)findViewById(R.id.tvResult);
-        etResultat = (EditText)findViewById(R.id.etResultat);
         ivSmilie = (ImageView) findViewById(R.id.ivSmilie);
+        etResultat = (EditText)findViewById(R.id.etResultat);
+        etMax = (EditText)findViewById(R.id.etMax);
+        etMin = (EditText)findViewById(R.id.etMin);
 
-        plusCalculator = new PlusCalculationBuilder(0,30);
-        minusCalculator = new MinusCalculationBuilder(0,30);
+        preferences = getSharedPreferences("calctrainer", MODE_PRIVATE);
+
+        etMax.setText(""+getMax());
+        etMin.setText(""+getMin());
+
+        plusCalculator = new PlusCalculationBuilder(getMin(),getMax());
+        minusCalculator = new MinusCalculationBuilder(getMin(),getMax());
         calulcationBuilder = plusCalculator;
         newCalculation();
 
@@ -71,15 +85,46 @@ public class CalcActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        updateMinMax();
+    }
+
     private void newCalculation() {
+        updateMinMax();
         ok = false;
         tvResult.setText("");
         etResultat.setText("");
         ivSmilie.setImageResource(R.mipmap.icon_wink);
+
+        calulcationBuilder.setMin(getMin());
+        calulcationBuilder.setMax(getMax());
         calulcationBuilder.build();
+
         tvZahl1.setText(calulcationBuilder.getNumber1());
         tvZahl2.setText(calulcationBuilder.getNumber2());
         tvOperator.setText(calulcationBuilder.getOperator());
         etResultat.requestFocus();
+    }
+
+    private void updateMinMax() {
+        try{
+            int i = Integer.parseInt(etMax.getText().toString());
+            preferences.edit().putInt(PREF_KEY_MAX,i).apply();
+        }catch (Exception e){
+        }
+        try{
+            int i = Integer.parseInt(etMin.getText().toString());
+            preferences.edit().putInt(PREF_KEY_MIN,i).apply();
+        }catch (Exception e){
+        }
+    }
+
+    public int getMin() {
+        return preferences.getInt(PREF_KEY_MIN, 0);
+    }
+    public int getMax() {
+        return preferences.getInt(PREF_KEY_MAX, 30);
     }
 }

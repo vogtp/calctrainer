@@ -34,10 +34,15 @@ public class MinusCalculationBuilder implements ICalulcationBuilder {
 
     @Override
     public void build() {
+        Log.i(TAG, "Generating minus calculation between "+min+" and "+max);
         number1 = rand.nextInt(max-min) + min;
-        number1 = number1 == 0 ? 1 : number1;
         Log.i(TAG, "Number1: "+number1);
-        number2 = rand.nextInt(min+number1) + min;
+        int n = number1 - min;
+        if (n <= 0){
+            number2 = min;
+        }else {
+            number2 = rand.nextInt(n)+min;
+        }
         Log.i(TAG, "Number2: "+number2);
     }
 
@@ -51,6 +56,10 @@ public class MinusCalculationBuilder implements ICalulcationBuilder {
         return Integer.toString(number2);
     }
 
+    @Override
+    public CharSequence getResult() {
+        return Integer.toString(number1 - number2);
+    }
     @Override
     public CharSequence getOperator() {
         return "-";
@@ -68,4 +77,5 @@ public class MinusCalculationBuilder implements ICalulcationBuilder {
             return false;
         }
     }
+
 }

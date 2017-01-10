@@ -17,4 +17,6 @@ public interface ICalulcationBuilder {
     CharSequence getOperator();
 
     boolean checkResult(String result);
+
+    CharSequence getResult();
 }
