@@ -165,31 +165,35 @@
 
                 <Button
                     android:id="@+id/buPlus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="+"
-                    android:textSize="36sp" />
+                    android:textSize="36sp"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/buMinux"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="-"
-                    android:textSize="36sp" />
+                    android:textSize="36sp"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/buMultiply"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="\u2022"
-                    android:textSize="36sp" />
+                    android:textSize="36sp"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/buDivison"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="/"
-                    android:textSize="36sp" />
+                    android:textSize="36sp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
