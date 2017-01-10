@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Rechen Trainer</string>
+    <string name="app_name">Rechnen Trainer</string>
     <string name="right_answer">Richtig!</string>
     <string name="wrong_answer">%s ist falsch....</string>
     <string name="label_correct">Richtig:</string>
