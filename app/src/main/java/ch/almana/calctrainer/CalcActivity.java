@@ -2,10 +2,10 @@ package ch.almana.calctrainer;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -24,6 +24,7 @@ public class CalcActivity extends AppCompatActivity {
     private TextView tvResult;
     private ICalulcationBuilder plusCalculator;
     private ICalulcationBuilder minusCalculator;
+    private ICalulcationBuilder multiplyCalculationBuilder;
     private ImageView ivSmilie;
     private boolean ok = false;
     private EditText etMax;
@@ -56,6 +57,7 @@ public class CalcActivity extends AppCompatActivity {
 
         plusCalculator = new PlusCalculationBuilder(preferences);
         minusCalculator = new MinusCalculationBuilder(preferences);
+        multiplyCalculationBuilder = new MultiplyCalculationBuilder(preferences);
         calulcationBuilder = plusCalculator;
         newCalculation();
 
@@ -146,6 +148,16 @@ public class CalcActivity extends AppCompatActivity {
             public void onClick(View v) {
                 calulcationBuilder = minusCalculator;
                 if (TextUtils.isEmpty(etResultat.getText().toString())){
+                    total--;
+                }
+                newCalculation();
+            }
+        });
+        findViewById(R.id.buMultiply).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calulcationBuilder = multiplyCalculationBuilder;
+                if (TextUtils.isEmpty(etResultat.getText().toString())) {
                     total--;
                 }
                 newCalculation();
