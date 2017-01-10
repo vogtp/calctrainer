@@ -65,12 +65,14 @@ public class CalcActivity extends AppCompatActivity {
                 }else if (!TextUtils.isEmpty(etResultat.getText().toString())){
                     if (calulcationBuilder.checkResult(etResultat.getText().toString())){
                         tvResult.setText(R.string.right_answer);
+                        tvResult.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_correct,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_correct);
                         ok = true;
                         right++;
                     }else{
                         tvResult.setText(getString(R.string.wrong_answer, etResultat.getText().toString()));
+                        tvResult.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
 //                    tvResult.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_falsch,0,0,0);
                         ivSmilie.setImageResource(R.mipmap.icon_falsch);
                         etResultat.setText("");
@@ -133,6 +135,9 @@ public class CalcActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 calulcationBuilder = plusCalculator;
+                if (TextUtils.isEmpty(etResultat.getText().toString())){
+                    total--;
+                }
                 newCalculation();
             }
         });
@@ -140,6 +145,9 @@ public class CalcActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 calulcationBuilder = minusCalculator;
+                if (TextUtils.isEmpty(etResultat.getText().toString())){
+                    total--;
+                }
                 newCalculation();
             }
         });
