@@ -15,8 +15,8 @@ android {
         applicationId "ch.almana.calctrainer"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 2017011002
-        versionName "0.1.1"
+        versionCode 2017011003
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
